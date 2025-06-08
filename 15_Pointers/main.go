@@ -2,8 +2,20 @@ package main
 
 import "fmt"
 
-func main() {
-	var num int = 5
+// Passed by value
+func swapNumByRef(num *int) {
+	*num = 5
+	fmt.Println("====== Number before call ======>", *num)
+}
 
-	fmt.Println("Reference Value ----> ", &num)
+// Passed by value
+func swapNum(num int) {
+	num = 5
+	fmt.Println("====== Number before call ======>", num)
+}
+
+func main() {
+	num := 10
+	swapNum(num)
+	fmt.Println("====== Number after change ======>", num)
 }
