@@ -17,6 +17,16 @@ type Book struct {
 	created_at   time.Time
 }
 
+type Car struct {
+	name        string
+	modleNo     string
+	numberPlate int
+	color       string
+	companyName string
+	createdAt   time.Time
+	updatedAt   time.Time
+}
+
 // Constructor Function
 func newBook(name string, author string, is_available bool, price float32, pages int, rating float32, publisher string, created_at time.Time) *Book {
 	// Initial Setup
