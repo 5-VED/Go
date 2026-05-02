@@ -110,6 +110,33 @@ func (dll *DoublyLinkedList) InsertBetweenTwoNodes(val int, previousNode *Node) 
 	if nextNode != nil {
 		nextNode.Prev = insertedNode
 	}
+	dll.Size++
+}
+
+func (dll *DoublyLinkedList) RemovBetweenTwoNodes(val int) {
+	if dll.Size == 0 {
+		fmt.Println("Linked list is empty")
+		return
+	}
+
+	pointer := dll.Head
+	for pointer != nil {
+		if pointer.Val == val {
+			if pointer.Prev == nil || pointer.Next == nil {
+				fmt.Println("Node is at head or tail, use removeFromHead/removeFromTail")
+				return
+			}
+			pointer.Prev.Next = pointer.Next
+			pointer.Next.Prev = pointer.Prev
+			pointer.Prev = nil
+			pointer.Next = nil
+			dll.Size--
+			return
+		}
+		pointer = pointer.Next
+	}
+
+	fmt.Println("Value not found")
 }
 
 func (dll *DoublyLinkedList) print() {
@@ -140,7 +167,4 @@ func main() {
 
 	fmt.Print("After:  ")
 	dll.print() // 1 <-> 2 <-> 3 <-> 4 <-> 5
-}
-
-func (dll *DoublyLinkedList) RemovBetweenTwoNodes(val int) {
 }
