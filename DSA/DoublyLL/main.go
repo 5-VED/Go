@@ -119,21 +119,25 @@ func (dll *DoublyLinkedList) RemovBetweenTwoNodes(val int) {
 		return
 	}
 
-	pointer := dll.Head
-	for pointer != nil {
-		if pointer.Val == val {
-			if pointer.Prev == nil || pointer.Next == nil {
+	cur := dll.Head
+	for cur != nil {
+		if cur.Val == val {
+			if cur.Prev == nil || cur.Next == nil {
 				fmt.Println("Node is at head or tail, use removeFromHead/removeFromTail")
 				return
 			}
-			pointer.Prev.Next = pointer.Next
-			pointer.Next.Prev = pointer.Prev
-			pointer.Prev = nil
-			pointer.Next = nil
+
+			cur.Prev.Next = cur.Next
+			cur.Next.Prev = cur.Prev
+
+			cur.Prev = nil
+			cur.Next = nil
+
 			dll.Size--
+
 			return
 		}
-		pointer = pointer.Next
+		cur = cur.Next
 	}
 
 	fmt.Println("Value not found")
